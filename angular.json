@@ -48,6 +48,12 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "test-storybook": {
+              "aot": false,
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true              
             }
           },
           "defaultConfiguration": "production"
@@ -83,6 +89,25 @@
             "browserTarget": "angular-storybook-vitest:build",
             "compodoc": false,
             "outputDir": "storybook-static"
+          }
+        },
+        "test-storybook": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "browsers": ["Chromium"],
+            "buildTarget": "angular-storybook-vitest:build:test-storybook",
+            "tsConfig": ".storybook/tsconfig.json",
+            "include": [
+              "src/stories/**/*.ts"
+            ],
+            "exclude": [
+              "**/*.stories.ts"
+            ],
+            "setupFiles": [
+              ".storybook/vitest-globals.setup.ts",
+              ".storybook/vitest.setup.ts"
+            ],
+            "runnerConfig": "vitest-storybook-base.config.ts"
           }
         }
       }
